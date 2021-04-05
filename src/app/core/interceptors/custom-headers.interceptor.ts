@@ -6,13 +6,33 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '@env';
+import { KeycloakService } from 'keycloak-angular';
+import { AuthService } from '@app/services/auth.service';
 
 @Injectable()
 export class CustomHeadersInterceptor implements HttpInterceptor {
 
-  constructor() {}
+  constructor(private keycloakService: KeycloakService, private authService: AuthService) {}
 
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    const isApiUrl = request.url.startsWith(environment.API_BASE_PATH);
+    const isLoggedIn = this.keycloakService.isLoggedIn() && !this.keycloakService.isTokenExpired();
+
+    if (isApiUrl && isLoggedIn) {
+      const user = this.authService.currentUserValue;
+      request = request.clone({
+        setHeaders: {
+          CurrentUserName: user.username || '',
+          CurrentUserGroups: user.userGroups || ''
+          // .. maybe add custom user attibutes to header
+          // what you desire
+        }
+      });
+    }
+
+
+
     return next.handle(request);
   }
 }

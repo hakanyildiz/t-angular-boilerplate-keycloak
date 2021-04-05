@@ -6,13 +6,24 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
+
+import { KeycloakService } from 'keycloak-angular';
 
 @Injectable()
 export class AuthenticationInterceptor implements HttpInterceptor {
 
-  constructor() {}
+  constructor(private keycloakService: KeycloakService) {}
 
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    return next.handle(request);
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    return next.handle(request).pipe(catchError((err: any) => {
+      if (err.status === 401) {
+        if (!this.keycloakService.isLoggedIn()) {
+          this.keycloakService.logout();
+        }
+      }
+      return throwError(err);
+    }));
   }
 }
