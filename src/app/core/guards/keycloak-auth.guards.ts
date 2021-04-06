@@ -14,7 +14,6 @@ export class CanAuthenticationGuard extends KeycloakAuthGuard implements CanActi
 
   isAccessAllowed(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean | UrlTree> {
     if (environment.IS_MOCK) {
-      console.log('buradaa')
       return new Promise((resolve, reject) => {
         resolve(true);
       });
