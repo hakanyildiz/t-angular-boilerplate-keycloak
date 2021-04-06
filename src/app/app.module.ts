@@ -1,4 +1,4 @@
-import { ApplicationRef, APP_INITIALIZER, DoBootstrap, NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, DoBootstrap, ApplicationRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -10,14 +10,16 @@ import { SharedModule } from '@shared/shared.module';
 
 import { environment } from '@env';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
-import { NavComponent } from './layout/nav/nav.component';
-import { FooterComponent } from './layout/footer/footer.component';
+
+import { AuthLayoutComponent, ContentLayoutComponent, FooterComponent, NavComponent } from './layout';
 
 const keycloakService = new KeycloakService();
 
 @NgModule({
   declarations: [
     AppComponent,
+    ContentLayoutComponent,
+    AuthLayoutComponent,
     NavComponent,
     FooterComponent
   ],
@@ -28,7 +30,7 @@ const keycloakService = new KeycloakService();
 
     // core & shared
     CoreModule,
-    SharedModule,
+    SharedModule.forRoot(),
 
     // app
     AppRoutingModule,
@@ -42,6 +44,7 @@ const keycloakService = new KeycloakService();
       useValue: keycloakService
     }
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   // comment boostrap property when keycloak conf completed & ready to use
   bootstrap: [AppComponent]
 })

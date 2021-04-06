@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from "@angular/router";
+import { environment } from "@env";
 import { KeycloakAuthGuard, KeycloakService } from "keycloak-angular";
-import { resolve } from "node:path";
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +13,13 @@ export class CanAuthenticationGuard extends KeycloakAuthGuard implements CanActi
   }
 
   isAccessAllowed(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean | UrlTree> {
+    if (environment.IS_MOCK) {
+      console.log('buradaa')
+      return new Promise((resolve, reject) => {
+        resolve(true);
+      });
+    }
+
     return new Promise((resolve, reject) => {
       if (!this.authenticated) {
         this.keycloakAngular.login().catch(e => console.log(e));
@@ -39,4 +46,5 @@ export class CanAuthenticationGuard extends KeycloakAuthGuard implements CanActi
       resolve(granted);
     });
   }
+
 }

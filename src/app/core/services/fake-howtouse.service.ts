@@ -2,7 +2,6 @@ import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ApiService } from '@app/services/api.service';
 import { environment } from '@env';
-import { env } from 'node:process';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({

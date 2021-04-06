@@ -30,7 +30,8 @@ export const environment = {
     PATH1: 'path1',
     PATH2: 'path2',
     PATH3: 'path3'
-  }
+  },
+  IS_MOCK: true
 };
 
 /*

@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
 
   public async ngOnInit() {
     // added for example purpose. if you do not need, remove keycloak related codes.
-    console.log('ngOnInit');
+    console.log('App Component ngOnInit');
 
     this.isLoggedIn = await this.keycloak.isLoggedIn();
 

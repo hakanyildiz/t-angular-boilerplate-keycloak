@@ -3,11 +3,10 @@
         <mat-toolbar color="primary" class="main-toolbar">
             <mat-toolbar-row>
                 <h1 routerLink="/" class="app-brand">
-                    <!-- {{appName}} -->
+                    {{appName}}
                 </h1>
-                <img [src]="appLogoSrc" class="app-logo" alt="ivr raf logo">
                 <span class="aa-spacer"></span>
-                <img [src]="globalLogoSrc" alt="Global Bilgi Logo">
+                <img [src]="logoSrc" alt="Logo Description">
             </mat-toolbar-row>
             <mat-toolbar-row>
                 <div class="user-card">
@@ -57,22 +56,14 @@
             <h3 mat-subheader>Kullanıcı Arayüzü</h3>
             <mat-list-item routerLink="/dashboard">
                 <mat-icon matListIcon>collections_bookmark</mat-icon>
-                <a matLine>Rafında Neler Var?</a>
+                <a matLine>Dashboard</a>
             </mat-list-item>
             <mat-divider></mat-divider>
             <h3 mat-subheader>Admin Arayüzü</h3>
             <mat-list-item routerLink="/admin">
                 <mat-icon matListIcon>note</mat-icon>
-                <a matLine>Rafını Yönet</a>
+                <a matLine>Admin</a>
             </mat-list-item>
-            <mat-list-item routerLink="/admin/add-view">
-                <mat-icon matListIcon>note_add</mat-icon>
-                <a matLine>Rafa Koleksiyon Ekle</a>
-            </mat-list-item>
-            <!-- <mat-list-item routerLink="/admin/auth-views">
-              <mat-icon matListIcon>vpn_key</mat-icon>
-              <a matLine>Koleksiyon Yetkilendirme</a>
-          </mat-list-item> -->
         </mat-nav-list>
 
         <mat-nav-list class="bottom-nav-list">
@@ -89,12 +80,11 @@
                 <button mat-icon-button (click)="appSideNav.toggle()" *ngIf="mobileQuery.matches">
                   <mat-icon>menu</mat-icon>
               </button>
-
                 <h1 routerLink="/" class="app-brand">
                     {{appName}}
                 </h1>
                 <span class="aa-spacer"></span>
-                <img [src]="globalLogoSrc" alt="Global Bilgi Logo">
+                <img [src]="logoSrc" alt="Logo description">
             </mat-toolbar-row>
         </mat-toolbar>
         <main class="main-content-inner">

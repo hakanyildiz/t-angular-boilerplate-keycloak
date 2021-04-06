@@ -16,9 +16,11 @@ export class ContentLayoutComponent implements OnInit, OnDestroy {
 
   public appName: string = environment.APP_NAME;
   mobileQuery: MediaQueryList;
-  globalLogoSrc: any = 'assets/logo.png';
+  logoSrc: any = 'assets/logo.png';
+  defaultUserLogoSrc: any = 'assets/default-user.png';
+
   appSideNav: any;
-  user: User | undefined;
+  user: User = {};
 
   private _mobileQueryListener: () => void;
 
@@ -35,7 +37,16 @@ export class ContentLayoutComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.initUser();
+    if (environment.IS_MOCK) {
+      this.user = {
+        isAdmin: true,
+        fullName: 'Full Name Here',
+        username: 'Mock User',
+        avatarUrl: this.defaultUserLogoSrc
+      }
+    } else {
+      this.initUser();
+    }
   }
 
   initUser(): void {
