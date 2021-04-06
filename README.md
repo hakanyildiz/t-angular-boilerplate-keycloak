@@ -23,6 +23,8 @@ Ek olarak;
   `npm i --save keycloak-angular`
 
 ## **Projeyi Geliştirme Sunucunda Koşturma**
+`npm install` ile proje bağımlıkları yüklenmelidir.
+
 `ng serve` komutu çalıştırılacak geliştirme sunucusunda proje ayağa kalkacaktır. `http://localhost:4200/` adresi kullanılarak projeye erişilebilir.
 
 ## **Projeyi Canlı Sisteme Alma**
@@ -76,3 +78,14 @@ Proje içerisinde ortak kullanımda olan Component, Pipe, Directive, function, m
 * _Components_: Toast componenti ve Toast animasyon, konfigürasyonlarını içeren custom component bulunmaktadır.
 * _Models_: Model sınıflarını içerir.
 * _Material.module_: Angular Material Design Componentlerinin import, export larının tek bir noktaya toplandığı modüldür.
+
+## **Projede Yapılması Gereken Düzenlemeler**
+1. `index.html` ve `environment.ts` dosyalarında uygulama konfigürasyonları bulunmaktadır. Burada Keycloak tanımlamaları eklenmeli, Rest API bilgileri doldurulmalıdır. Birden fazla Rest API etkileşimi için tanımlamalar çoğaltılmalıdır.
+
+2. Uygulamaya şu anda doğrudan erişilebilebilmektedir. Eğer kimlik doğrulama aktif hale getirilmek isteniyorsa Keycloak tanımlamaları hazır olduktan sonra, `app.module.ts` AppModule yorum haline bırakılmış alanlar açılıp, kaldırılması gereken yerler düzenlemelidir. 
+
+3. `environment.ts` dosyasındaki `isMock` değeri false olarak güncellenmelidir. Böylelikle `content-layout.component.ts` içerisinde kullanıcı bilgileri mock yerine Keycloak servisinden yüklenecektir.
+
+4. Modüllerde yetkilendirme katmanının etkileştirilmesi için, `app-routing.module.ts` dosyasındaki route dizisindeki yorum halinde tutulan Guard alanlarının açılmalıdır.
+5. Proje detayları doğrultusunda, var olan modüller güncellenebilir, yeni componentler ve modüller eklenebilir.
+

@@ -15,6 +15,7 @@ const routes: Routes = [
     path: 'dashboard',
     component: ContentLayoutComponent,
     data: { roles: [Role.User, Role.Admin] },
+    // after keycloak ready, uncomment below
     // canActivate: [CanAuthenticationGuard],
     children: [
       {
@@ -28,6 +29,7 @@ const routes: Routes = [
     path: 'admin',
     component: ContentLayoutComponent,
     data: { roles: [Role.Admin] },
+    // after keycloak ready, uncomment below
     // canActivate: [CanAuthenticationGuard],
     children: [
       {
