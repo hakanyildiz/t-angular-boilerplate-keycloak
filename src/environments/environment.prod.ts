@@ -19,6 +19,7 @@ const keycloakOptions: KeycloakOptions = {
 export const environment = {
   production: true,
   APP_NAME: window['appName'],
+  APP_DEV_NAME: 'IVR Solutions',
   API_BASE_PATH: window['restApiURL'] + '/api/',
   keycloakOptions,
   PATH: {

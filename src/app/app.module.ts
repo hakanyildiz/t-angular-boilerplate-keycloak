@@ -10,12 +10,16 @@ import { SharedModule } from '@shared/shared.module';
 
 import { environment } from '@env';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+import { NavComponent } from './layout/nav/nav.component';
+import { FooterComponent } from './layout/footer/footer.component';
 
 const keycloakService = new KeycloakService();
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavComponent,
+    FooterComponent
   ],
   imports: [
     // angular
