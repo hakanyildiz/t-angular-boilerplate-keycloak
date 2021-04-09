@@ -88,4 +88,4 @@ Proje içerisinde ortak kullanımda olan Component, Pipe, Directive, function, m
 
 4. Modüllerde yetkilendirme katmanının etkileştirilmesi için, `app-routing.module.ts` dosyasındaki route dizisindeki yorum halinde tutulan Guard alanlarının açılmalıdır.
 5. Proje detayları doğrultusunda, var olan modüller güncellenebilir, yeni componentler ve modüller eklenebilir.
-
+6. Güncellenen proje ismiyle `angular.json`, `app.e2e-spec.ts` ve `karma.conf.js` dosyalarındaki proje isimleri güncellenebilir. 
