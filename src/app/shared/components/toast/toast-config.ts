@@ -7,7 +7,7 @@ export class ToastData {
     templateContext?: {};
 }
 
-export type ToastType = 'warning' | 'info' | 'success';
+export type ToastType = 'warning' | 'info' | 'success' | 'error';
 
 export interface ToastConfig {
     position?: {
@@ -26,7 +26,7 @@ export const defaultToastConfig: ToastConfig = {
         right: 20,
     },
     animation: {
-        fadeOut: 2500,
+        fadeOut: 2000,
         fadeIn: 300,
     },
 };
